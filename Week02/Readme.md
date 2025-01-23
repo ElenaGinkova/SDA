@@ -1,4 +1,5 @@
-## BubbleSort
+## Бавни
+### BubbleSort
 ```c
 void optimizedBubbleSort(std::vector<int>& arr) {
 	int lastSwappedIndex = arr.size() - 1;
@@ -18,7 +19,7 @@ void optimizedBubbleSort(std::vector<int>& arr) {
 	}
 }
 ```
-## SelectionSort
+### SelectionSort
 ```c
 void selectionSort(std::vector<int>& arr) {
     int N = arr.size();
@@ -32,4 +33,8 @@ void selectionSort(std::vector<int>& arr) {
       if(minI != i) swap(arr[minI], arr[i]);
     }
 }
+```
+## SelectionSort
+```c
+
 ```
