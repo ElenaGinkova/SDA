@@ -23,4 +23,5 @@ int ternarySearch(const vector<int> &arr, int l, int r, int x) {
         }
     }
     return -1;
-}```
+}
+```
