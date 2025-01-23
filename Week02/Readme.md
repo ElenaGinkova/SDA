@@ -93,3 +93,35 @@ void _merge(std::vector<int>& arr, size_t left, size_t mid, size_t right, std::v
 	}
 }
 ```
+## QuickSort
+```c
+int partition(std::vector<int>& arr, int low, int high) {
+    int initialPivotIndex = rand() % (high - low + 1) + low; // select random index in the range [low, high] for pivot
+    std::swap(nums[initialPivotIndex], nums[high]); // put the pivot at the end
+
+    int pivot = arr[high];
+    int i = low;
+
+    for (int j = low; j < high; ++j) {
+        if (arr[j] <= pivot) {
+            std::swap(arr[i], arr[j]);
+            i++;
+        }
+    }
+
+    std::swap(arr[i], arr[high]);
+    
+    return i;
+}
+void quickSort(std::vector<int>& arr, int low, int high) {
+    if (low < high) {
+        int pi = partition(arr, low, high);
+
+        quickSort(arr, low, pi - 1);
+        quickSort(arr, pi + 1, high);
+    }
+}
+
+// how to use
+quickSort(arr, 0, arr.size() - 1);
+```
