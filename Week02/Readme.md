@@ -1,3 +1,5 @@
+sort(arr.begin(), arr.end(), [](const auto& lhs, const auto& rhs){return lhs < rhs;});
+
 # Бавни
 ## BubbleSort - След всяка итерация на i, най-големият елемент "изплува" чрез последователни размени на съседни елементи.
 ```c
