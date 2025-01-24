@@ -14,8 +14,49 @@
     }
 ```
 или ако има невалидна стойност да се попълни за посесетени
-
 ## 2
+```c
+ ListNode* reverseList(ListNode* head) {
+        ListNode* prev = nullptr;
+        ListNode* curr = head;
+        while(curr) {
+            ListNode* next = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = next;
+        }
+        return prev;
+    }
+    
+    int listLength(ListNode* head) {
+        int result = 0;
+        while(head) {
+            head = head->next;
+            result++;
+        }
+        return result;
+    }
+    bool isPalindrome(ListNode* head) {
+        auto headCopy = head;
+        auto l = listLength(head);
+        
+        for(size_t i = 0; i < l / 2; i++) {head = head->next;}
+        if(l % 2 == 1) {
+            head = head->next;
+        }
+        auto reversed = reverseList(head);
+        for(size_t i = 0; i < l / 2; i++) {
+            if(headCopy->val != reversed->val) {
+                return false;
+            }
+            headCopy = headCopy->next, reversed = reversed->next
+        }
+        
+        return true;
+    }
+```
+
+## 3
 ```c
 ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
         ListNode* it1 = headA;
