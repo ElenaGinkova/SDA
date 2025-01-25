@@ -134,3 +134,27 @@ void dfs(TreeNode* root, vector<int>& v)
 ### postorder - left, right, root
 ### preorder - root, left, right
 ### levelorder
+```c
+vector<vector<int>> levelOrder(TreeNode* root) {//bfs
+        if(!root) {
+            return {};
+        }
+        vector<vector<int>> v;
+        queue<TreeNode*> q;
+        q.push(root);
+        while(!q.empty())
+        {
+            int size = q.size();
+            vector<int> lv;
+            for(int i = 0; i < size; i++)
+            {
+                TreeNode* curr = q.front(); q.pop();
+                lv.push_back(curr->val);
+                if(curr->left) q.push(curr->left);
+                if(curr->right) q.push(curr->right);
+            }
+            v.push_back(lv);
+        }
+        return v;
+    }
+```
