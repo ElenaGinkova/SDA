@@ -130,3 +130,7 @@ void dfs(TreeNode* root, vector<int>& v)
         return true;
     }
 ```
+### inorder - left, root, right
+### postorder - left, right, root
+### preorder - root, left, right
+### levelorder
