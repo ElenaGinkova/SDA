@@ -96,3 +96,17 @@ void BinarySearchTree<T>::bfs() const {
 	}
 }
 ```
+## validate
+```c
+bool _BST(TreeNode* root, long minn, long maxx) {
+        if(!root) return true;
+
+        if(root->val <= minn || root->val >= maxx) return false;
+
+        return _BST(root->left, minn, root->val) && _BST(root->right, root->val, maxx);
+    }
+    bool isValidBST(TreeNode* root)
+    {
+        return _BST(root, LONG_MIN, LONG_MAX);
+    }
+```
