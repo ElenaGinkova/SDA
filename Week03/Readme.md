@@ -1,5 +1,5 @@
 INT_MAX < 10^9
-
+-2^31 <= val <= 2^31 - 1 // но в рекурсивна зад или сбор не стига
 ```c
 	std::cout << (*std::lower_bound(v.begin(), v.end(), target)) << std::endl;
 	std::cout << (*std::upper_bound(v.begin(), v.end(), target)) << std::endl;
