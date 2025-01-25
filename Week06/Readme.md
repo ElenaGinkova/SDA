@@ -40,3 +40,59 @@ Node<T>* BinarySearchTree<T>::_remove(Node<T>* current, const T& value) {
 	return current;
 }
 ```
+## Depth search
+```c
+template <typename T>
+void BinarySearchTree<T>::inorder(const Node<T>* current) const {
+	if (!current) {
+		return;
+	}
+
+	inorder(current->left);
+	std::cout << current->value << " "; // 0 2 3 4 5 8 
+	inorder(current->right);
+}
+```
+```c
+template <typename T>
+void BinarySearchTree<T>::iterativeDfs() const { // inorder
+	std::stack<Node<T>*> stack;
+	Node<T>* current = root;
+
+	while (current != nullptr || !stack.empty()) {
+		while (current != nullptr) {
+			stack.push(current);
+			current = current->left;
+		}
+
+		current = stack.top();
+		stack.pop();
+		std::cout << current->value << " ";
+		current = current->right;
+	}
+}
+```
+## Breadth search
+```c
+template <typename T>
+void BinarySearchTree<T>::bfs() const {
+	std::queue<Node<T>*> container;
+	container.push(root);
+
+	while (!container.empty()) {
+		size_t levelSize = container.size();
+		while (levelSize > 0) {
+			Node<T>* current = container.front();
+			container.pop();
+
+			if (current) {
+				std::cout << current->value << " ";
+				container.push(current->left);
+				container.push(current->right);
+			}
+			levelSize--;
+		}
+		std::cout << std::endl;
+	}
+}
+```
