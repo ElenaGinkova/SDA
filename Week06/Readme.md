@@ -110,3 +110,23 @@ bool _BST(TreeNode* root, long minn, long maxx) {
         return _BST(root, LONG_MIN, LONG_MAX);
     }
 ```
+```c
+void dfs(TreeNode* root, vector<int>& v)
+    {
+        if(!root) return;
+
+        dfs(root->left, v);
+        v.push_back(root->val);
+        dfs(root->right, v);
+    }
+    bool isValidBST(TreeNode* root) {
+        vector<int> order;
+        dfs(root, order);
+
+        for(int i = 1; i < order.size(); i++)
+        {
+            if(order[i - 1] >= order[i]) return false;
+        }
+        return true;
+    }
+```
