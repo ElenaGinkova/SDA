@@ -6,7 +6,7 @@
 
 Добавя всички съседи, които не са посетени.
 
-->Намира най-къс път от даден възел до всички останали в непретеглен граф 
+-> Намира **най-къс път** от даден възел до всички останали в непретеглен граф 
 ```c
 void bfs(int starting_vertex, unordered_map<int, unordered_set<int>>& graph) {
     queue<int> q; // !!!
@@ -43,6 +43,7 @@ void bfs(int starting_vertex, unordered_map<int, unordered_set<int>>& graph) {
 
 Добавя всички съседи, които не са посетени, към края на стек* // !!!
 
+-> Удобен за намиране на **компоненти на свързаност**, проверка за **цикъл в граф** и **топологична сортировка**. (*Забележка: Възможно е и използването на BFS за решаване на горните проблеми.)
 ```c
 void dfs(int current, unordered_set<int> &visited, unordered_map<int, unordered_set<int>> &graph) {
     visited.insert(current);
