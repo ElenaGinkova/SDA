@@ -109,3 +109,51 @@ vector<int> topological_sort(unordered_map<int, unordered_set<int>> &graph) {
     return stack; // 1 4 2 3 5 6
 }
 ```
+```c
+
+vector<int> bfs(int n, int s, map<int, set<int>> gr) {
+    vector<int> res(n + 1);
+    set<int> visited;
+    queue<int> q;
+    q.push(s);
+    visited.insert(s);
+    int len = 0;
+    while(!q.empty())
+    {
+        int size = q.size();
+        for(int i = 0; i < size; i++)
+        {
+            int curr = q.front(); q.pop();
+            visited.insert(curr);
+            res[curr] = len;
+            for(auto& nb: gr[curr])
+            {
+                if(!visited.count(nb))   
+                {q.push(nb);visited.insert(nb);}
+            }
+        }
+        len++;
+    }
+    return res;
+}
+
+int main()
+{
+     int Q;
+    std::cin >> Q;
+
+    while (Q--)
+    {
+        std::map<int, std::set<int>> graph;
+        int V, E, start, v, w;
+        std::cin >> V >> E;
+        for (int i = 0; i < E; i++)
+        {
+            std::cin >> v >> w;
+            graph[v].insert(w);
+            graph[w].insert(v);
+        }
+        std::cin >> start;
+        std::vector<int> results = bfs(V, start, graph);
+    }
+```
