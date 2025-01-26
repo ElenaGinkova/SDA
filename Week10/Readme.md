@@ -159,6 +159,15 @@ int main()
     }
 ```
 ```c
+void dfs(int s, map<int, set<int>>& gr, set<int>& vis)
+{
+    vis.insert(s);
+    for(int nb:gr[s])
+    {
+        if(!vis.count(nb))
+            dfs(nb, gr,vis);
+    }
+} // but more time complexity
 void bfs(int s, map<int, set<int>>& gr, set<int>& vis)
 {
     queue<int> q;
