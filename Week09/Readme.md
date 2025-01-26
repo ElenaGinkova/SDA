@@ -34,3 +34,17 @@ std::push_heap(nums.begin(), nums.end());
 ```c
 priority_queue<int> pq(nums.begin(), nums.end());
 ```
+```c
+int findKthLargest(vector<int> &nums, int k)
+    {
+        std::make_heap(nums.begin(), nums.end());
+
+        for (int i = 1; i < k; i++)
+        {
+            std::pop_heap(nums.begin(), nums.end());
+            nums.pop_back(); // the element is not deleted only moved to the end of the vector
+        }
+
+        return nums.front();
+    }
+```
