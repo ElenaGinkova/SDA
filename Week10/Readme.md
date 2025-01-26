@@ -85,19 +85,19 @@ void dfsIterative(int start, unordered_map<int, unordered_set<int>>& graph) {
 void topological_dfs(int current, unordered_set<int> &visited, vector<int> &stack, unordered_map<int, unordered_set<int>> &graph) {
     visited.insert(current);
 
-    for (int neighbor : graph[current]) {
+    for (int neighbor : graph[current]) { // посети вс съседи
         if (!visited.count(neighbor)) {
             topological_dfs(neighbor, visited, stack, graph);
         }
     }
-    stack.push_back(current);
+    stack.push_back(current); // добави накрая в резултата
 }
 
 vector<int> topological_sort(unordered_map<int, unordered_set<int>> &graph) {
     vector<int> stack;
     unordered_set<int> visited;
 
-    for (auto iter = graph.begin(); iter != graph.end(); ++iter) {
+    for (auto iter = graph.begin(); iter != graph.end(); ++iter) { // посети всеки връх
         int vertex = iter->first;
         if (!visited.count(vertex)) {
             topological_dfs(vertex, visited, stack, graph);
