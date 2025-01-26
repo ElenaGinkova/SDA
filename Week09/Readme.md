@@ -25,3 +25,12 @@ int main() {
 ```c
         priority_queue<int> pq(stones.begin(), stones.end());
 ```
+```c
+ std::make_heap(nums.begin(), nums.end());
+ current = nums.front();
+std::pop_heap(nums.begin(), nums.end());
+std::push_heap(nums.begin(), nums.end());
+```
+```c
+priority_queue<int> pq(nums.begin(), nums.end());
+```
