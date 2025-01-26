@@ -4,6 +4,7 @@ struct Struct {
 	int a, b;
 };
 
+!!!callable
 struct StructMaxComparator {
 	bool operator()(const Struct& s1, const Struct& s2) {
 		return s1.a < s2.a;
