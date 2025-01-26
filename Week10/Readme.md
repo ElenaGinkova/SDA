@@ -1,4 +1,4 @@
-Breadth First Search
+## Breadth First Search
 
 Разделя възлите на посетени и непосетени. !!!
 Започва да обхожда от начален връх.
@@ -33,4 +33,9 @@ void bfs(int starting_vertex, unordered_map<int, unordered_set<int>>& graph) {
         distance++;
     }
 }
+```
+## Depth First Search
+
+```c
+
 ```
