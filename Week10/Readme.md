@@ -1,7 +1,9 @@
 ## Breadth First Search
 
 Разделя възлите на посетени и непосетени. !!!
+
 Започва да обхожда от начален връх.
+
 Добавя всички съседи, които не са посетени.
 
 ->Намира най-къс път от даден възел до всички останали в непретеглен граф 
@@ -36,8 +38,11 @@ void bfs(int starting_vertex, unordered_map<int, unordered_set<int>>& graph) {
 ```
 ## Depth First Search
 Разделя възлите на посетени и непосетени. // !!!
+
 Започва да обхожда от начален връх.
+
 Добавя всички съседи, които не са посетени, към края на стек* // !!!
+
 ```c
 void dfs(int current, unordered_set<int> &visited, unordered_map<int, unordered_set<int>> &graph) {
     visited.insert(current);
