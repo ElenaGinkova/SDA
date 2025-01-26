@@ -1,4 +1,4 @@
-
+priority_queue<int, vector<int>, greater<>> rhs;
 ```c
 struct Struct {
 	int a, b;
