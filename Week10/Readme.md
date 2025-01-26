@@ -35,7 +35,39 @@ void bfs(int starting_vertex, unordered_map<int, unordered_set<int>>& graph) {
 }
 ```
 ## Depth First Search
-
+Разделя възлите на посетени и непосетени. // !!!
+Започва да обхожда от начален връх.
+Добавя всички съседи, които не са посетени, към края на стек* // !!!
 ```c
+void dfs(int current, unordered_set<int> &visited, unordered_map<int, unordered_set<int>> &graph) {
+    visited.insert(current);
 
+    for (int neighbor : graph[current]) {
+        if (!visited.count(neighbor)) {
+            dfs(neighbor, visited, graph);
+        }
+    }
+}
+```
+```c
+void dfsIterative(int start, unordered_map<int, unordered_set<int>>& graph) {
+    unordered_set<int> visited;
+    stack<int> s;
+    s.push(start);
+
+    while (!s.empty()) {
+        int current = s.top();
+        s.pop();
+
+        if (!visited.count(current)) {
+            visited.insert(current);
+
+            for (int neighbor : graph[current]) {
+                if (!visited.count(neighbor)) {
+                    s.push(neighbor);
+                }
+            }
+        }
+    }
+}
 ```
