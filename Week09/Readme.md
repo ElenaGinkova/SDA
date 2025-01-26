@@ -22,3 +22,6 @@ int main() {
 	std::priority_queue<Struct, std::vector<Struct>, StructMaxComparator> pq;
 }
 ```
+```c
+        priority_queue<int> pq(stones.begin(), stones.end());
+```
