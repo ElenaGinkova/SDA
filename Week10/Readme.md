@@ -158,3 +158,38 @@ int main()
         std::vector<int> results = bfs(V, start, graph);
     }
 ```
+```c
+void bfs(int s, map<int, set<int>>& gr, set<int>& vis)
+{
+    queue<int> q;
+    q.push(s);
+    vis.insert(s);
+    
+    while(!q.empty())
+    {
+        int curr = q.front(); q.pop();
+        for(auto nb:gr[curr])
+        {
+            if(!vis.count(nb))
+            {
+                q.push(nb);
+                vis.insert(nb);
+            }
+        }
+    }
+}
+int countBFS(int v, map<int, set<int>>& gr)
+{
+    set<int> vis;
+    int c = 0; 
+    for(int i = 0; i < v; i++)
+    {
+        if(!vis.count(i))
+        {
+            bfs(i, gr, vis);
+            c++;
+        }
+    }
+    return c;
+}
+```
