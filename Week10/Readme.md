@@ -202,3 +202,30 @@ int countBFS(int v, map<int, set<int>>& gr)
     return c;
 }
 ```
+```c
+bool dfs(int i, map<int, set<int>>& gr, vector<int>& vis)
+{
+    vis[i] = 1;
+    for(auto nb:gr[i])
+    {
+        if(vis[nb] == 2) continue;
+        if(vis[nb] == 1)
+        {
+            return true;
+        }   
+        if(dfs(nb, gr,vis)) return true;
+    }
+    vis[i] = 2;
+    return false;
+}
+bool cycle(int V, map<int, set<int>>& gr)
+{
+    vector<int>visited(V + 1, 0);
+    for(int i = 1; i <= V; i++)
+    {
+        if(visited[i] == 0)
+        if(dfs(i, gr, visited))return true;
+    }
+    return false;
+}
+```
