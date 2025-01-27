@@ -1,5 +1,5 @@
 
-Най-кратък път в непретеглен граф се намира чрез Breadth-first search (BFS).
+Най-кратък път в **непретеглен** граф се намира чрез Breadth-first search (BFS).
 
 ## Dijkstra's algorithm (Алгоритъм на Дейкстра)
 
