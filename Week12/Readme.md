@@ -51,3 +51,55 @@ int prims(int n, vector<vector<int>> edges, int start) {
 }
 
 ```
+## Kruskal
+
+```c
+
+struct Edge
+{
+  int from, to,w;
+  bool operator<(const Edge& rhs)const
+  {
+    return w < rhs.w;
+  }  
+};
+int find(int x, vector<int>& parents)
+{
+    return parents[x] == x ? x : parents[x] = find(parents[x], parents); 
+}
+void yu(int x, int y, vector<int>& parents)
+{
+    parents[find(x,parents)] = find(y, parents);
+}
+int kruskals(int n,   vector<Edge>& edges){
+    sort(edges.begin(), edges.end());
+    vector<int> parents(n + 1);
+    for(int i = 1; i <= n; i++)
+    {
+        parents[i] = i;
+    }
+    int W = 0;
+    for(int i = 0; i < edges.size(); i++)
+    {
+        if(find(edges[i].from, parents) == find(edges[i].to, parents)) continue;
+        yu(edges[i].from, edges[i].to, parents);
+        W += edges[i].w;
+    }
+    return W;
+}
+
+int main()
+{
+    int V, E;
+    cin >> V >> E;
+    vector<Edge> edges;
+    for(int i = 0; i < E; i++)
+    {
+        int from, to,w;
+        cin >> from >> to >> w;
+        edges.push_back({from, to ,w});
+        edges.push_back({to,from,w});
+    }
+    cout << kruskals(V, edges);
+}
+```
