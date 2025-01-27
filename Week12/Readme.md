@@ -103,6 +103,7 @@ int main()
     cout << kruskals(V, edges);
 }
 ```
+## points
 ```c
 class Solution {
 public:
