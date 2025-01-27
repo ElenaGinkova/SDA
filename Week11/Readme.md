@@ -26,14 +26,14 @@ struct Edge
 vector<int> shortestReach(int n, vector<vector<int>> edges, int s) {
     vector<int> res(n, INT_MAX); //unreachable
     
-    map<int, vector<Edge>>gr;                //na vs vruh rubovete
+    map<int, vector<Edge>>gr;                //na vs vruh rubovete // graph of EDGES
     for(size_t i = 0; i < edges.size(); i++) //undirected
     {
         gr[edges[i][0]].push_back({edges[i][1], edges[i][2]});
         gr[edges[i][1]].push_back({edges[i][0], edges[i][2]});
     }
     
-    priority_queue<Node> pq;
+    priority_queue<Node> pq; // !!!! pq of NODES
     pq.push({s,0});
     res[s - 1] = 0;
     
