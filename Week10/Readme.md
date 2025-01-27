@@ -229,3 +229,45 @@ bool cycle(int V, map<int, set<int>>& gr)
     return false;
 }
 ```
+```c
+/*
+// Definition for a Node.
+class Node {
+public:
+    int val;
+    vector<Node*> neighbors;
+    Node() {
+        val = 0;
+        neighbors = vector<Node*>();
+    }
+    Node(int _val) {
+        val = _val;
+        neighbors = vector<Node*>();
+    }
+    Node(int _val, vector<Node*> _neighbors) {
+        val = _val;
+        neighbors = _neighbors;
+    }
+};
+*/
+
+class Solution {
+public:
+    map<Node*, Node*> m;
+    Node* cloneGraph(Node* node) {
+        if(!node) return node;
+        auto it = m.find(node);
+        if(it != m.end())
+        {
+            return it->second;
+        }
+        Node* newNode = new Node(node->val);
+        m[node] = newNode;
+        for(auto nb: node->neighbors)
+        {
+            newNode->neighbors.push_back(cloneGraph(nb));
+        }
+        return newNode;
+    }
+};
+```
