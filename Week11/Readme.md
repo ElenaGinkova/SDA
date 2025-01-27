@@ -62,3 +62,6 @@ vector<int> shortestReach(int n, vector<vector<int>> edges, int s) {
     return res;
 }
 ```
+## Bellman-Ford algorithm (Алгоритъм на Белман-Форд)
+
+Алгоритъм, който пресмята най-кратък път от начален връх до всички останали в ориентиран претеглен граф.
