@@ -24,10 +24,10 @@ struct Edge
 
 };
 vector<int> shortestReach(int n, vector<vector<int>> edges, int s) {
-    vector<int> res(n, INT_MAX);
+    vector<int> res(n, INT_MAX); //unreachable
     
-    map<int, vector<Edge>>gr;//na vs vruh rubovete
-    for(size_t i = 0; i < edges.size(); i++)
+    map<int, vector<Edge>>gr;                //na vs vruh rubovete
+    for(size_t i = 0; i < edges.size(); i++) //undirected
     {
         gr[edges[i][0]].push_back({edges[i][1], edges[i][2]});
         gr[edges[i][1]].push_back({edges[i][0], edges[i][2]});
@@ -40,12 +40,12 @@ vector<int> shortestReach(int n, vector<vector<int>> edges, int s) {
     while(!pq.empty())
     {
         auto curr = pq.top(); pq.pop();
-        if(curr.dist > res[curr.indx - 1]) continue;
+        if(curr.dist > res[curr.indx - 1]) continue; // we have seen diff and better
         
         for(auto edge: gr[curr.indx])
         {
             int newW = curr.dist + edge.w;
-            if(res[edge.to - 1] > newW)
+            if(res[edge.to - 1] > newW) // is it better
             {
                 res[edge.to - 1] = newW;
                 pq.push({edge.to, newW});
@@ -53,12 +53,12 @@ vector<int> shortestReach(int n, vector<vector<int>> edges, int s) {
         }
         
     }
-    res.erase(res.begin() + s - 1);
-    for(size_t i = 0; i < res.size(); i++) {
+    //res.erase(res.begin() + s - 1);
+    /*for(size_t i = 0; i < res.size(); i++) {
         if(res[i] == INT_MAX) {
             res[i] = -1;
         }
-    }
+    }*/
     return res;
 }
 ```
