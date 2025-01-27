@@ -85,7 +85,7 @@ vector<int> BF(int s, int V, vector<Edge>edges)
 	vector<int> res(V, INT_MAX);
 	res[s] = 0;
 
-	for (int i = 0; i < V; i++)	// for every V
+	for (int i = 0; i < V - 1; i++)	// accumulate for diff length
 	{
 		for (auto edge : edges) // all edges
 		{
@@ -96,7 +96,7 @@ vector<int> BF(int s, int V, vector<Edge>edges)
 
 	}
 
-	for (auto edge : edges)
+	for (auto edge : edges) // one more accumulation
 	{
 		if (res[edge.from] != INT_MAX && res[edge.from] + edge.w < res[edge.to])
 			return {};
