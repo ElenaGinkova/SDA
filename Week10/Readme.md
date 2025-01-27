@@ -283,3 +283,41 @@ vector<vector<int>> res;
         return res;
     }
 ```
+```c
+int res = 0;
+int dfs(vector<set<int>>& gr, set<int>& vis, int i)
+{
+    
+    int ch = 1;
+    vis.insert(i);
+    
+    for(auto& nb: gr[i])
+    {
+        if(!vis.count(nb))
+        ch += dfs(gr, vis, nb);
+    }
+    
+    if(ch % 2 == 0)
+    {
+        res++;
+        return 0;
+    }
+    
+    return ch;
+}
+
+int main() {
+    int V, E, e1, e2;
+    cin >> V >> E;
+    vector<set<int>>gr(V + 1);
+    for(int i = 0; i < E; i++)
+    {
+        cin >> e1 >> e2;
+        gr[e1].insert(e2);
+        gr[e2].insert(e1);
+    }
+    set<int> vis;
+    dfs(gr, vis, 1);
+    cout << res - 1;
+}
+```
