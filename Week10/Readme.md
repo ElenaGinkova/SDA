@@ -259,3 +259,27 @@ public:
     }
 };
 ```
+```c
+vector<vector<int>> res;
+
+    void dfs(int i, vector<vector<int>>& m, vector<int>& temp)
+    {
+        temp.push_back(i);
+        if(i == m.size() - 1)
+        {
+            res.push_back(temp);
+            temp.pop_back();
+            return;
+        }
+        for(auto& nb: m[i])
+        {
+            dfs(nb, m, temp);
+        }
+        temp.pop_back();
+    }
+    vector<vector<int>> allPathsSourceTarget(vector<vector<int>>& graph) {
+        vector<int> temp;
+        dfs(0, graph, temp);  
+        return res;
+    }
+```
