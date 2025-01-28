@@ -24,9 +24,9 @@ void bfs(int s, map<int, set<int>>& graph, vector<int>& res) {
 
         for (int i = 0; i < level_size; ++i) // visit only v of this lvl
         {
-            int current = q.front(); q.pop();
+            int curr = q.front(); q.pop();
 
-            for (int nb : graph[current]) // add all not visited neighbors
+            for (int nb : graph[curr]) // add all not visited neighbors
             { 
                 if (!visited.count(nb)) {
                     res[nb] = distance;
