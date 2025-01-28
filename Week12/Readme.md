@@ -168,3 +168,98 @@ public:
     }
 };
 ```
+## Critical and pseudo 
+```c
+//int root[int(1e7+1)]{};
+class Solution {
+public:
+vector<int> critical;
+        vector<int> pseudo;
+    struct Edge
+    {
+        int from, to, w, i;
+        bool operator<(const Edge& rhs)const
+        {
+            return w < rhs.w;
+        }
+    };
+    
+    struct UF{
+        vector<int> root;
+        UF(int n) : root(n)
+        {
+            for(int i = 0; i < n; i++)
+            {
+                root[i] = i;
+            }
+        }
+        int find(int x)
+        {
+            return root[x] == x ? x : root[x] = find(root[x]);
+        }
+        void yu(int x, int y)
+        {
+            root[find(x)] = find(y);
+        }
+        bool sameR(int x, int y)
+        {
+            return find(x) == find(y);
+        }
+    };
+
+    
+    int calcMST(int n, vector<Edge>& e, int withOrOut, int j = -1)
+    {
+        UF uf(n);
+        int mst = 0;
+        int cmp = n;
+        if(withOrOut == 2)
+        {
+            mst += e[j].w;
+            uf.yu(e[j].from, e[j].to);
+            cmp--;
+        }
+        for(int i = 0; i < e.size(); i++)
+        {
+            if(withOrOut == 1 && i == j) continue;
+            if(uf.sameR(e[i].from, e[i].to)) continue;
+
+            uf.yu(e[i].from, e[i].to);
+            mst += e[i].w;
+            cmp--;
+            if(cmp == 1) break;
+        }
+        return cmp == 1 ? mst : -1;
+    }
+
+
+    vector<vector<int>> findCriticalAndPseudoCriticalEdges(int n, vector<vector<int>>& edges) {
+        vector<Edge> e;
+        for(int i = 0; i < edges.size(); i++)
+        {
+            e.push_back({edges[i][0], edges[i][1], edges[i][2], i});
+        }
+        sort(e.begin(), e.end());
+
+        int minS = calcMST(n, e, 0);
+
+        for(int j = 0; j < edges.size(); j++)//try without each edge
+        {   
+            int withoutE = calcMST(n, e, 1, j);
+            if(withoutE == -1 || withoutE > minS) // we couldnt without the edge
+            {
+                critical.push_back(e[j].i);
+            }
+            else // pseudo or irrelevant ??
+            {
+                int withE = calcMST(n, e, 2, j);
+                if(withE == minS)
+                {
+                    pseudo.push_back(e[j].i);
+                }
+            }
+        }
+        return {critical, pseudo};
+    }
+};
+```
